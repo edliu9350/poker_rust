@@ -58,18 +58,47 @@ There're 9 core test cases for checking `Straight Flush`, `Four of a Kind`, `Ful
 
 ### Object-orientation
 
+Implemented Object-orientation by using `Game`, `Card`, `Player`, `Engine`, `Dealer`.
+
 ### Data Structure
 
-<code>
-> Game {
+```
+Game {
     method: GameType,
     deck: VecDeque<Card>,
     players: Vec<Player>,
     dealer: Dealer,
     engine: Engine
 }
-</code>
+
+Card {
+    name: Name,     // (A, 2, 3, ... K)
+    suit: Suit      // (♣, ♦, ♥, ♠)
+}
+
+Player {
+    hand: Vec<Card>,
+    rank: Rank
+    name: String,
+    age: u8
+}
+
+Dealer {
+    method: Method
+}
+```
 
 ### Separation of Concerns
 
+-   Game - control game playing
+-   Player - store basic information and a hand
+-   Card - basic structure with name and suit
+-   Engine - core component for calculation
+-   Dealer - responsible for shuffling and dealing cards
+
 ### Maintainability
+
+-   Game - can handle several types of Poker using `method` variable.
+-   Player - can extend information as needed (e.g. ID, history, level, ...).
+-   Engine - can be updated according to the method.
+-   Dealer - can deal with a couple of shuffling methods.
